@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  jupyter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: jupyter notebook --notebook-dir=/tf --ip 0.0.0.0 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password=''
+    working_dir: '/tf'
+    ports:
+      - '8888:8888'
+    volumes:
+      - './data:/tmp/data'
+      - './models:/tmp/models'
+      - './notebooks:/tf/notebooks'
